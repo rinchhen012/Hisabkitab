@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 
+
 const Person = ({ person, onEditPerson, onDeletePerson, onEditExpense }) => (
   <tr>
     <td>
@@ -9,9 +10,10 @@ const Person = ({ person, onEditPerson, onDeletePerson, onEditExpense }) => (
           type="text"
           value={person.editName}
           onChange={(e) => onEditPerson(person.id, 'editName', e.target.value)}
+          placeholder="Name"
         />
       ) : (
-        person.name
+        <strong>{person.name}</strong>
       )}
     </td>
     <td>
@@ -19,33 +21,31 @@ const Person = ({ person, onEditPerson, onDeletePerson, onEditExpense }) => (
         {person.expenses.map((expense, index) => (
           <li key={index}>
             {expense.editing ? (
-              <>
+              <div className="expense-edit">
                 <input
                   type="number"
                   value={expense.editAmount}
                   onChange={(e) => onEditExpense(person.id, index, 'editAmount', e.target.value)}
-                  style={{ width: '60px' }}
+                  placeholder="Amount"
                 />
                 <input
                   type="text"
                   value={expense.editDescription}
                   onChange={(e) => onEditExpense(person.id, index, 'editDescription', e.target.value)}
-                  style={{ marginLeft: '5px' }}
+                  placeholder="Description"
                 />
-              </>
-            ) : (
-              <>
-                ¥{expense.amount} - {expense.description || 'No description'}
-              </>
-            )}
-            <div style={{ display: 'inline-block', marginLeft: '10px' }}>
-              {expense.editing ? (
                 <button onClick={() => onEditExpense(person.id, index, 'save')}>💾</button>
-              ) : (
-                <button onClick={() => onEditExpense(person.id, index, 'edit')}>✏️</button>
-              )}
-              <button onClick={() => onEditExpense(person.id, index, 'delete')}>🗑️</button>
-            </div>
+              </div>
+            ) : (
+              <div className="expense-display">
+                <span>¥{expense.amount}</span>
+                <span>{expense.description || 'No description'}</span>
+                <div className="expense-actions">
+                  <button onClick={() => onEditExpense(person.id, index, 'edit')}>✏️</button>
+                  <button onClick={() => onEditExpense(person.id, index, 'delete')}>🗑️</button>
+                </div>
+              </div>
+            )}
           </li>
         ))}
       </ul>
@@ -70,7 +70,7 @@ function App() {
   const handleAddPerson = (e) => {
     e.preventDefault();
     if (!newName || !newAmount) return;
-    
+
     const newPerson = {
       id: Date.now(),
       name: newName,
@@ -84,7 +84,7 @@ function App() {
         editDescription: ''
       }]
     };
-    
+
     setPeople([...people, newPerson]);
     setNewName('');
     setNewAmount('');
@@ -184,20 +184,21 @@ function App() {
 
   return (
     <div className="container">
-      <h1>HisabKitab 💸</h1>
-      <h3>🪛🔧By Tilak Hacker Corporation🪛🔧</h3>
-      
+      <h1>🚗 HisabKitab 💸</h1>
+      <h3>🪛🔧Made by Tilak Hacker Corporation🪛🔧</h3>
+      <h3>Sponsered by G boi, Lawson</h3>
+
       <form onSubmit={handleAddPerson} className="form">
         <input
           type="text"
-          placeholder="Mf Name"
+          placeholder="Mf's Name"
           value={newName}
           onChange={(e) => setNewName(e.target.value)}
           required
         />
         <input
           type="number"
-          placeholder="Amount(¥)"
+          placeholder="Amount (¥)"
           value={newAmount}
           onChange={(e) => setNewAmount(e.target.value)}
           required
@@ -235,7 +236,6 @@ function App() {
             </tbody>
           </table>
 
-          {/* Keep the existing settlements display */}
           <h2>Settlements</h2>
           <div className="settlements">
             {settlements.length > 0 ? (

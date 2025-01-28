@@ -13,13 +13,13 @@ export default defineConfig({
         theme_color: "#3498db",
         icons: [
           {
-            src: "icon-192x192.png",
-            sizes: "192x192",
+            src: "icons/calculator512.png",
+            sizes: "512x512",
             type: "image/png",
           },
           {
-            src: "icon-512x512.png",
-            sizes: "512x512",
+            src: "icons/calculator120.png",
+            sizes: "120x120",
             type: "image/png",
           },
         ],

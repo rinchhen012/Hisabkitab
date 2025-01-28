@@ -3,14 +3,16 @@
   "name": "HisabKitab - Expense Tracker",
   "icons": [
     {
-      "src": "icon-192x192.png",
+      "src": "icons/calculator512.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     },
     {
-      "src": "icon-512x512.png",
+      "src": "icons/calculator120.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "120x120",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
