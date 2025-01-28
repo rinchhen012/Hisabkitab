@@ -217,7 +217,7 @@ function App() {
       <header className="app-header">
         <h1 className="app-title">🚗 HisabKitab 💸</h1>
         <h5>🪛🔧Made by Tilak Hacker Corporation🪛🔧</h5>
-        <h5>Sponsered by G boi, Lawson</h5>
+        <h5>Sponsored by G boi from Lawson</h5>
       </header>
 
       <form onSubmit={handleAddPerson} className="input-form">
@@ -248,7 +248,7 @@ function App() {
           <div className="form-group">
             <input
               type="text"
-              placeholder="Expense description"
+              placeholder="Description"
               value={newDescription}
               onChange={(e) => setNewDescription(e.target.value)}
               className="form-input"
