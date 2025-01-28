@@ -1,91 +1,299 @@
-/* Mobile-first styles */
+/* Base Styles */
+:root {
+  --primary-color: #3498db;
+  --danger-color: #e74c3c;
+  --background-color: #f8f9fa;
+  --text-color: #2c3e50;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Container */
 .container {
-  padding: 1rem;
   max-width: 100%;
+  padding: 1rem;
   margin: 0 auto;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h1 {
-  font-size: 1.8rem;
+/* Header */
+.app-header {
+  padding: 1.5rem 0;
   text-align: center;
-  color: #2c3e50;
-  margin-bottom: 1.5rem;
 }
 
-h3 {
-  font-size: 1rem;
-  text-align: center;
-  color: #2c3e50;
-  margin-bottom: 1.5rem;
+.app-title {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
 }
 
-.form {
+/* Forms */
+.input-form {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-row {
   display: flex;
-  flex-direction: column;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-input {
+.form-input {
+  width: 100%;
   padding: 0.8rem;
-  font-size: 1rem;
   border: 1px solid #ddd;
   border-radius: 8px;
-  width: 100%;
+  font-size: 1rem;
+  transition: border-color 0.2s;
 }
 
-button {
-  padding: 0.8rem;
-  font-size: 1rem;
+.form-input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.number-input {
+  text-align: right;
+}
+
+/* Buttons */
+.primary-btn {
+  width: 100%;
+  padding: 1rem;
+  background: var(--primary-color);
+  color: white;
   border: none;
   border-radius: 8px;
-  background: #3498db;
-  color: white;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
+  transition: transform 0.1s, background 0.2s;
 }
 
-button:hover {
-  background: #2980b9;
+.primary-btn:active {
+  transform: scale(0.98);
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.icon-btn.small {
+  font-size: 1rem;
+}
+
+.icon-btn.danger {
+  color: var(--danger-color);
+}
+
+/* Person Cards */
+.person-card {
+  background: white;
+  border-radius: 12px;
   margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-th,
-td {
-  padding: 0.8rem;
+.person-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.person-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.edit-input {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 70%;
+}
+
+.expense-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+  list-style: none;
+}
+
+.expense-item:last-child {
+  border-bottom: none;
+}
+
+.expense-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.expense-amount {
+  font-weight: 500;
+  color: var(--primary-color);
+  min-width: 80px;
+  text-align: left;
+}
+
+.expense-edit {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Settlements */
+.settlements-list {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.settlement-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 0;
   border-bottom: 1px solid #eee;
 }
 
-th {
-  background: #3498db;
-  color: white;
+.settlement-item:last-child {
+  border-bottom: none;
 }
 
-.settlements {
-  background: #f8f9fa;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
+.from-person {
+  color: var(--danger-color);
 }
 
-.settlements p {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #ddd;
+.to-person {
+  color: var(--primary-color);
 }
 
-/* Responsive adjustments */
+.arrow {
+  opacity: 0.6;
+}
+
+.settlement-amount {
+  margin-left: auto;
+  font-weight: 500;
+}
+
+/* Responsive Design */
 @media (min-width: 768px) {
   .container {
-    max-width: 800px;
+    max-width: 600px;
     padding: 2rem;
   }
 
-  h1 {
+  .app-title {
     font-size: 2.5rem;
+  }
+
+  .form-row {
+    flex-direction: row;
+  }
+
+  .form-group {
+    flex: 1;
+    margin-bottom: 0;
+  }
+}
+
+/* iOS Specific Adjustments */
+@supports (-webkit-touch-callout: none) {
+  input,
+  button {
+    -webkit-appearance: none;
+  }
+
+  .form-input {
+    font-size: 16px; /* Prevent zoom on focus */
+  }
+}
+
+/* Expense Display Styles */
+.expense-info {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 1rem;
+}
+
+.expense-info::after {
+  content: "·";
+  margin: 0 0.5rem;
+  color: #ccc;
+}
+
+.expense-description {
+  color: #666;
+  flex: 1; /* Takes up remaining space */
+  word-break: break-word; /* Prevents overflow */
+}
+
+.expense-item:hover {
+  background: #f8f9fa;
+}
+
+/* Expense Edit Styles */
+.expense-edit {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+.expense-edit input[type="number"] {
+  width: 100px; /* Fixed width for amount input */
+}
+
+.expense-edit input[type="text"] {
+  flex: 1; /* Takes up remaining space */
+}
+
+/* Mobile Optimization */
+@media (max-width: 480px) {
+  .expense-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .expense-edit input[type="number"],
+  .expense-edit input[type="text"] {
+    width: 100%;
   }
 }

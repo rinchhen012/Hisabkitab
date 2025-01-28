@@ -1,64 +1,94 @@
+
 import { useState } from 'react';
 import './App.css';
 
-
 const Person = ({ person, onEditPerson, onDeletePerson, onEditExpense }) => (
-  <tr>
-    <td>
+  <div className="person-card">
+    <div className="person-header">
       {person.editing ? (
         <input
           type="text"
           value={person.editName}
           onChange={(e) => onEditPerson(person.id, 'editName', e.target.value)}
           placeholder="Name"
+          className="edit-input"
         />
       ) : (
-        <strong>{person.name}</strong>
+        <h3 className="person-name">{person.name}</h3>
       )}
-    </td>
-    <td>
-      <ul>
-        {person.expenses.map((expense, index) => (
-          <li key={index}>
-            {expense.editing ? (
-              <div className="expense-edit">
-                <input
-                  type="number"
-                  value={expense.editAmount}
-                  onChange={(e) => onEditExpense(person.id, index, 'editAmount', e.target.value)}
-                  placeholder="Amount"
-                />
-                <input
-                  type="text"
-                  value={expense.editDescription}
-                  onChange={(e) => onEditExpense(person.id, index, 'editDescription', e.target.value)}
-                  placeholder="Description"
-                />
-                <button onClick={() => onEditExpense(person.id, index, 'save')}>💾</button>
-              </div>
-            ) : (
-              <div className="expense-display">
-                <span>¥{expense.amount}</span>
-                <span>{expense.description || 'No description'}</span>
-                <div className="expense-actions">
-                  <button onClick={() => onEditExpense(person.id, index, 'edit')}>✏️</button>
-                  <button onClick={() => onEditExpense(person.id, index, 'delete')}>🗑️</button>
-                </div>
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
-    </td>
-    <td>
-      {person.editing ? (
-        <button onClick={() => onEditPerson(person.id, 'save')}>💾</button>
-      ) : (
-        <button onClick={() => onEditPerson(person.id, 'edit')}>✏️</button>
-      )}
-      <button onClick={() => onDeletePerson(person.id)}>🗑️</button>
-    </td>
-  </tr>
+      <div className="person-actions">
+        <button 
+          onClick={() => person.editing ? onEditPerson(person.id, 'save') : onEditPerson(person.id, 'edit')}
+          className="icon-btn"
+        >
+          {person.editing ? '💾' : '✏️'}
+        </button>
+        <button 
+          onClick={() => onDeletePerson(person.id)}
+          className="icon-btn danger"
+        >
+          🗑️
+        </button>
+      </div>
+    </div>
+    
+    <ul className="expense-list">
+      {person.expenses.map((expense, index) => (
+        <li key={index} className="expense-item">
+          {expense.editing ? (
+            <div className="expense-edit">
+            <input
+              type="number"
+              value={expense.editAmount}
+              onChange={(e) => onEditExpense(person.id, index, 'editAmount', e.target.value)}
+              placeholder="¥ Amount"
+              className="number-input"
+              inputMode="decimal"
+            />
+            <input
+              type="text"
+              value={expense.editDescription}
+              onChange={(e) => onEditExpense(person.id, index, 'editDescription', e.target.value)}
+              placeholder="Description"
+              className="text-input"
+            />
+            <div className="expense-actions">
+              <button 
+                onClick={() => onEditExpense(person.id, index, 'save')}
+                className="save-btn"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+          ) : (
+            <div className="expense-display">
+  <div className="expense-info">
+    <span className="expense-amount">¥{expense.amount}</span>
+    <span className="expense-description">
+      {expense.description || 'No description'}
+    </span>
+  </div>
+  <div className="expense-actions">
+    <button 
+      onClick={() => onEditExpense(person.id, index, 'edit')}
+      className="icon-btn small"
+    >
+      ✏️
+    </button>
+    <button 
+      onClick={() => onEditExpense(person.id, index, 'delete')}
+      className="icon-btn small danger"
+    >
+      🗑️
+    </button>
+  </div>
+</div>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
 );
 
 function App() {
@@ -184,68 +214,83 @@ function App() {
 
   return (
     <div className="container">
-      <h1>🚗 HisabKitab 💸</h1>
-      <h3>🪛🔧Made by Tilak Hacker Corporation🪛🔧</h3>
-      <h3>Sponsered by G boi, Lawson</h3>
+      <header className="app-header">
+        <h1 className="app-title">🚗 HisabKitab 💸</h1>
+        <h5>🪛🔧Made by Tilak Hacker Corporation🪛🔧</h5>
+        <h5>Sponsered by G boi, Lawson</h5>
+      </header>
 
-      <form onSubmit={handleAddPerson} className="form">
-        <input
-          type="text"
-          placeholder="Mf's Name"
-          value={newName}
-          onChange={(e) => setNewName(e.target.value)}
-          required
-        />
-        <input
-          type="number"
-          placeholder="Amount (¥)"
-          value={newAmount}
-          onChange={(e) => setNewAmount(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Expense description (optional)"
-          value={newDescription}
-          onChange={(e) => setNewDescription(e.target.value)}
-        />
-        <button type="submit">Add mf</button>
+      <form onSubmit={handleAddPerson} className="input-form">
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="Mf's Name"
+            value={newName}
+            onChange={(e) => setNewName(e.target.value)}
+            className="form-input"
+            required
+          />
+        </div>
+        
+        <div className="form-row">
+          <div className="form-group">
+            <input
+              type="number"
+              placeholder="¥ Amount"
+              value={newAmount}
+              onChange={(e) => setNewAmount(e.target.value)}
+              className="form-input number-input"
+              required
+              inputMode="decimal"
+            />
+          </div>
+          
+          <div className="form-group">
+            <input
+              type="text"
+              placeholder="Expense description"
+              value={newDescription}
+              onChange={(e) => setNewDescription(e.target.value)}
+              className="form-input"
+            />
+          </div>
+        </div>
+
+        <button type="submit" className="primary-btn">
+          ➕ Add Expense
+        </button>
       </form>
 
       {people.length > 0 && (
-        <div className="results">
-          <h2>All Expenses</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Expenses</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {people.map(person => (
-                <Person
-                  key={person.id}
-                  person={person}
-                  onEditPerson={handleEditPerson}
-                  onDeletePerson={(id) => setPeople(people.filter(p => p.id !== id))}
-                  onEditExpense={handleEditExpense}
-                />
-              ))}
-            </tbody>
-          </table>
+        <div className="content-section">
+          <h2 className="section-title">All Expenses</h2>
+          <div className="people-list">
+            {people.map(person => (
+              <Person
+                key={person.id}
+                person={person}
+                onEditPerson={handleEditPerson}
+                onDeletePerson={(id) => setPeople(people.filter(p => p.id !== id))}
+                onEditExpense={handleEditExpense}
+              />
+            ))}
+          </div>
 
-          <h2>Settlements</h2>
-          <div className="settlements">
+          <h2 className="section-title">Settlements</h2>
+          <div className="settlements-list">
             {settlements.length > 0 ? (
               settlements.map((s, i) => (
-                <p key={i}>
-                  {s.from} owes {s.to} ¥{s.amount}
-                </p>
+                <div key={i} className="settlement-item">
+                  <span className="from-person">{s.from}</span>
+                  <span className="arrow">→</span>
+                  <span className="to-person">{s.to}</span>
+                  <span className="settlement-amount">¥{s.amount}</span>
+                </div>
               ))
             ) : (
-              <p>No settlements needed! Everything is balanced. 🎉</p>
+              <div className="no-settlements">
+                🎉 No settlements needed! Everything is balanced.
+              </div>
             )}
           </div>
         </div>
