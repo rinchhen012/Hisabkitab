@@ -256,7 +256,6 @@ function App() {
           ⚠️ Your browser is blocking local storage. Data will not persist!
         </div>
       )}
-      
       <header className="app-header">
         <h1 className="app-title">🚗 HisabKitab 💸</h1>
         <h5>🪛🔧Made by Tilak Hacker Corporation🪛🔧</h5>
