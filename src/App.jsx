@@ -1,6 +1,7 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
+
+const LOCAL_STORAGE_KEY = 'hisabkitab-data-v2';
 
 const Person = ({ person, onEditPerson, onDeletePerson, onEditExpense }) => (
   <div className="person-card">
@@ -96,6 +97,31 @@ function App() {
   const [newName, setNewName] = useState('');
   const [newAmount, setNewAmount] = useState('');
   const [newDescription, setNewDescription] = useState('');
+
+  // Load data on mount
+  useEffect(() => {
+    try {
+      const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (savedData) {
+        const parsedData = JSON.parse(savedData);
+        // Validate loaded data structure
+        if (Array.isArray(parsedData)) {
+          setPeople(parsedData);
+        }
+      }
+    } catch (error) {
+      console.error('Failed to load data:', error);
+    }
+  }, []);
+
+  // Save data on every change
+  useEffect(() => {
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(people));
+    } catch (error) {
+      console.error('Failed to save data:', error);
+    }
+  }, [people]);
 
   const handleAddPerson = (e) => {
     e.preventDefault();
@@ -212,8 +238,25 @@ function App() {
     });
   });  
 
+  // Test localStorage availability
+  const testStorage = () => {
+    try {
+      localStorage.setItem('test', 'test');
+      localStorage.removeItem('test');
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+
   return (
     <div className="container">
+      {!testStorage() && (
+        <div className="storage-warning">
+          ⚠️ Your browser is blocking local storage. Data will not persist!
+        </div>
+      )}
+      
       <header className="app-header">
         <h1 className="app-title">🚗 HisabKitab 💸</h1>
         <h5>🪛🔧Made by Tilak Hacker Corporation🪛🔧</h5>
