@@ -150,12 +150,12 @@ const AddExpenseForm: FC<AddExpenseFormProps> = ({ personId, onSubmit }) => {
     : { icon: '', bg: '' };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center justify-center gap-2">
-      <div className="relative w-36">
+    <form onSubmit={handleSubmit} className="flex items-center justify-center gap-4">
+      <div className="relative w-40">
         <select
           value={EXPENSE_CATEGORIES.find(cat => cat.label === selectedCategory)?.id || ''}
           onChange={(e) => handleCategorySelect(e.target.value)}
-          className={`input w-full appearance-none py-2.5 pl-7 pr-6 text-sm ${
+          className={`input w-full appearance-none py-1.5 pl-7 pr-6 text-sm ${
             !selectedCategory ? 'text-surface-400' : ''
           }`}
           required
@@ -198,22 +198,23 @@ const AddExpenseForm: FC<AddExpenseFormProps> = ({ personId, onSubmit }) => {
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
         placeholder="¥ Amount"
-        className="input w-28 py-2.5 text-sm text-surface-100 placeholder:text-surface-400"
+        className="input w-32 py-1.5 text-sm text-surface-100 placeholder:text-surface-400"
         min="0"
         required
       />
       <button
         type="submit"
-        className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
+        className={`flex h-9 items-center gap-1 rounded-lg px-3 text-sm font-medium text-white transition-colors ${
           theme === 'dark'
             ? 'bg-primary-500 hover:bg-primary-600'
             : 'bg-primary-600 hover:bg-primary-700'
         }`}
         title="Add expense"
       >
-        <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
         </svg>
+        Add
       </button>
     </form>
   );

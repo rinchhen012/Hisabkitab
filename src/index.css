@@ -5,62 +5,10 @@
 @layer base {
   html {
     -webkit-tap-highlight-color: transparent;
-    /* Prevent text size adjustment on orientation change */
-    -webkit-text-size-adjust: 100%;
-    /* Improve font rendering */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    /* Handle safe areas */
-    padding: env(safe-area-inset-top) env(safe-area-inset-right)
-      env(safe-area-inset-bottom) env(safe-area-inset-left);
   }
 
-  /* Hide scrollbars while keeping scroll functionality */
-  * {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
-  }
-
-  /* Hide WebKit scrollbars */
-  ::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* For iOS momentum scrolling */
-  body,
-  .scroll-container {
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Disable pull-to-refresh on mobile */
   body {
-    overscroll-behavior-y: none;
     @apply antialiased;
-  }
-
-  /* Prevent text selection */
-  * {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    user-select: none;
-  }
-
-  /* Allow text selection in inputs and textareas */
-  input,
-  textarea {
-    -webkit-user-select: text;
-    user-select: text;
-  }
-
-  /* Safe area utilities */
-  .mx-safe {
-    margin-left: max(1rem, env(safe-area-inset-left));
-    margin-right: max(1rem, env(safe-area-inset-right));
-  }
-
-  .px-safe {
-    padding-left: max(1rem, env(safe-area-inset-left));
-    padding-right: max(1rem, env(safe-area-inset-right));
   }
 
   .dark body {

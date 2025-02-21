@@ -42,7 +42,7 @@ const AddPersonForm: FC<AddPersonFormProps> = ({ onSubmit }) => {
 
   return (
     <div className="space-y-2">
-      <form onSubmit={handleSubmit} className="flex gap-2">
+      <form onSubmit={handleSubmit} className="flex gap-3">
         <div className="flex-1">
           <input
             type="text"
@@ -65,16 +65,17 @@ const AddPersonForm: FC<AddPersonFormProps> = ({ onSubmit }) => {
         </div>
         <button
           type="submit"
-          className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
+          className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium text-white transition-colors ${
             theme === 'dark'
               ? 'bg-primary-500 hover:bg-primary-600'
               : 'bg-primary-600 hover:bg-primary-700'
           }`}
           title="Add person"
         >
-          <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
           </svg>
+          Add
         </button>
       </form>
     </div>
