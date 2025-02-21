@@ -5,40 +5,38 @@
 @layer base {
   html {
     -webkit-tap-highlight-color: transparent;
-    /* Prevent text size adjustment on orientation change */
     -webkit-text-size-adjust: 100%;
-    /* Improve font rendering */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Handle safe areas */
     padding: env(safe-area-inset-top) env(safe-area-inset-right)
       env(safe-area-inset-bottom) env(safe-area-inset-left);
   }
 
-  /* Hide scrollbars while keeping scroll functionality */
   * {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
-  /* Hide WebKit scrollbars */
   ::-webkit-scrollbar {
     display: none;
   }
 
-  /* For iOS momentum scrolling */
   body,
   .scroll-container {
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Disable pull-to-refresh on mobile */
   body {
     overscroll-behavior-y: none;
     @apply antialiased;
   }
 
-  /* Update text selection rules to be more specific */
+  /* Remove all touch restrictions by default */
+  * {
+    touch-action: manipulation;
+  }
+
+  /* Non-interactive elements */
   p,
   h1,
   h2,
@@ -47,22 +45,21 @@
   h5,
   h6,
   span,
-  div:not(.input):not(input):not(textarea):not(select) {
-    -webkit-touch-callout: none;
+  div {
     -webkit-user-select: none;
     user-select: none;
   }
 
-  /* Ensure inputs are interactive */
+  /* Make form elements fully interactive */
   input,
   textarea,
   select,
+  button,
   .input {
-    -webkit-touch-callout: default;
+    touch-action: manipulation;
     -webkit-user-select: text;
     user-select: text;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    touch-action: manipulation;
+    cursor: text;
   }
 
   /* Safe area utilities */
