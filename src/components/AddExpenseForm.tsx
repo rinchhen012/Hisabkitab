@@ -204,7 +204,7 @@ const AddExpenseForm: FC<AddExpenseFormProps> = ({ personId, onSubmit }) => {
       />
       <button
         type="submit"
-        className={`flex h-9 items-center gap-1 rounded-lg px-3 text-sm font-medium text-white transition-colors ${
+        className={`flex h-9 w-9 items-center justify-center rounded-lg text-sm font-medium text-white transition-colors ${
           theme === 'dark'
             ? 'bg-primary-500 hover:bg-primary-600'
             : 'bg-primary-600 hover:bg-primary-700'
@@ -214,7 +214,6 @@ const AddExpenseForm: FC<AddExpenseFormProps> = ({ personId, onSubmit }) => {
         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
         </svg>
-        Add
       </button>
     </form>
   );

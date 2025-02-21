@@ -109,3 +109,15 @@
     @apply bg-red-600 hover:bg-red-700 focus:ring-red-500/20;
   }
 }
+
+html,
+body {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  overscroll-behavior-y: none;
+}
