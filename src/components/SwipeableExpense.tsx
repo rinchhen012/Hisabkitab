@@ -76,7 +76,7 @@ const SwipeableExpense: FC<SwipeableExpenseProps> = ({ expense, onDelete, onEdit
   };
 
   return (
-    <div className="relative overflow-hidden rounded-lg mx-safe">
+    <div className="relative overflow-hidden rounded-lg">
       {/* Delete Background */}
       <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-red-500/10' : 'bg-red-600/10'}`} />
 
@@ -93,27 +93,27 @@ const SwipeableExpense: FC<SwipeableExpenseProps> = ({ expense, onDelete, onEdit
           theme === 'dark' ? 'bg-surface-800 hover:bg-surface-700/50' : 'bg-white hover:bg-surface-100/50'
         }`}
       >
-        <div className="min-w-0 flex-1">
+        <div className="min-w-0 flex-1 mr-2">
           <span className={`inline-flex rounded-md px-2 py-1 text-sm font-medium truncate ${categoryTextColor} ${categoryBgColor}`}>
             {expense.description}
           </span>
         </div>
-        <div className="flex items-center gap-1 pl-2 shrink-0">
-          <span className={`whitespace-nowrap text-sm font-medium sm:text-base ${theme === 'dark' ? 'text-surface-100' : 'text-surface-900'}`}>
+        <div className="flex items-center gap-1 shrink-0">
+          <span className={`whitespace-nowrap text-sm font-medium ${theme === 'dark' ? 'text-surface-100' : 'text-surface-900'}`}>
             ¥{formatNumber(expense.amount)}
           </span>
-          <div className="flex items-center gap-0.5 sm:gap-1">
+          <div className="flex items-center gap-0.5">
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 onEdit();
               }}
-              className={`rounded-full p-1 transition-colors hover:bg-primary-500/10 sm:p-1.5 ${
+              className={`rounded-full p-1 transition-colors hover:bg-primary-500/10 ${
                 theme === 'dark' ? 'text-surface-100' : 'text-surface-900'
               }`}
               title="Edit expense"
             >
-              <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
               </svg>
             </button>
@@ -122,13 +122,13 @@ const SwipeableExpense: FC<SwipeableExpenseProps> = ({ expense, onDelete, onEdit
                 e.stopPropagation();
                 onDelete();
               }}
-              className={`rounded-full p-1 transition-colors hover:bg-red-500/10 sm:p-1.5 ${
+              className={`rounded-full p-1 transition-colors hover:bg-red-500/10 ${
                 theme === 'dark' ? 'text-red-400 hover:text-red-300' : 'text-red-600 hover:text-red-500'
               }`}
               title="Delete expense"
             >
               <svg
-                className="h-3.5 w-3.5 sm:h-4 sm:w-4"
+                className="h-3.5 w-3.5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
