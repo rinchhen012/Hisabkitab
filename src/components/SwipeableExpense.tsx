@@ -76,7 +76,7 @@ const SwipeableExpense: FC<SwipeableExpenseProps> = ({ expense, onDelete, onEdit
   };
 
   return (
-    <div className="relative overflow-hidden rounded-lg">
+    <div className="relative overflow-hidden rounded-lg mx-safe">
       {/* Delete Background */}
       <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-red-500/10' : 'bg-red-600/10'}`} />
 
@@ -98,7 +98,7 @@ const SwipeableExpense: FC<SwipeableExpenseProps> = ({ expense, onDelete, onEdit
             {expense.description}
           </span>
         </div>
-        <div className="flex items-center gap-1 pl-2">
+        <div className="flex items-center gap-1 pl-2 shrink-0">
           <span className={`whitespace-nowrap text-sm font-medium sm:text-base ${theme === 'dark' ? 'text-surface-100' : 'text-surface-900'}`}>
             ¥{formatNumber(expense.amount)}
           </span>

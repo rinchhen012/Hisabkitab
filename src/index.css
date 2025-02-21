@@ -52,6 +52,17 @@
     user-select: text;
   }
 
+  /* Safe area utilities */
+  .mx-safe {
+    margin-left: max(1rem, env(safe-area-inset-left));
+    margin-right: max(1rem, env(safe-area-inset-right));
+  }
+
+  .px-safe {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+
   .dark body {
     @apply bg-surface-900 text-surface-100;
   }
