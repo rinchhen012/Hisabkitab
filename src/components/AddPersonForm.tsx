@@ -40,31 +40,24 @@ const AddPersonForm: FC<AddPersonFormProps> = ({ onSubmit }) => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-    setError('');
-  };
-
   return (
     <div className="space-y-2">
       <form onSubmit={handleSubmit} className="flex gap-2">
-        <div className="flex-1">
+        <div className="relative flex-1">
+          <label htmlFor="nameInput" className="sr-only">Enter name</label>
           <input
+            id="nameInput"
             type="text"
+            inputMode="text"
             value={name}
-            onChange={handleChange}
-            onTouchStart={(e) => e.currentTarget.focus()}
-            onClick={(e) => e.currentTarget.focus()}
+            onChange={(e) => {
+              setName(e.target.value);
+              setError('');
+            }}
             placeholder="Enter mf name"
-            autoComplete="off"
             className={`input w-full text-surface-100 placeholder:text-surface-400 ${
               error ? 'input-error' : ''
             }`}
-            style={{
-              WebkitUserSelect: 'text',
-              WebkitTouchCallout: 'none',
-              touchAction: 'manipulation'
-            }}
             required
           />
           {error && (

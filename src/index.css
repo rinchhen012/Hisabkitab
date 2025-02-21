@@ -4,7 +4,6 @@
 
 @layer base {
   html {
-    -webkit-tap-highlight-color: transparent;
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -21,45 +20,9 @@
     display: none;
   }
 
-  body,
-  .scroll-container {
-    -webkit-overflow-scrolling: touch;
-  }
-
   body {
     overscroll-behavior-y: none;
     @apply antialiased;
-  }
-
-  /* Remove all touch restrictions by default */
-  * {
-    touch-action: manipulation;
-  }
-
-  /* Non-interactive elements */
-  p,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  span,
-  div {
-    -webkit-user-select: none;
-    user-select: none;
-  }
-
-  /* Make form elements fully interactive */
-  input,
-  textarea,
-  select,
-  button,
-  .input {
-    touch-action: manipulation;
-    -webkit-user-select: text;
-    user-select: text;
-    cursor: text;
   }
 
   /* Safe area utilities */
