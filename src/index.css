@@ -15,6 +15,23 @@
       env(safe-area-inset-bottom) env(safe-area-inset-left);
   }
 
+  /* Hide scrollbars while keeping scroll functionality */
+  * {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  /* Hide WebKit scrollbars */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* For iOS momentum scrolling */
+  body,
+  .scroll-container {
+    -webkit-overflow-scrolling: touch;
+  }
+
   /* Disable pull-to-refresh on mobile */
   body {
     overscroll-behavior-y: none;
