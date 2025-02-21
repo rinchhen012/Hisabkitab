@@ -40,6 +40,11 @@ const AddPersonForm: FC<AddPersonFormProps> = ({ onSubmit }) => {
     }
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+    setError('');
+  };
+
   return (
     <div className="space-y-2">
       <form onSubmit={handleSubmit} className="flex gap-2">
@@ -47,14 +52,19 @@ const AddPersonForm: FC<AddPersonFormProps> = ({ onSubmit }) => {
           <input
             type="text"
             value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-              setError(''); // Clear error when typing
-            }}
+            onChange={handleChange}
+            onTouchStart={(e) => e.currentTarget.focus()}
+            onClick={(e) => e.currentTarget.focus()}
             placeholder="Enter mf name"
+            autoComplete="off"
             className={`input w-full text-surface-100 placeholder:text-surface-400 ${
               error ? 'input-error' : ''
             }`}
+            style={{
+              WebkitUserSelect: 'text',
+              WebkitTouchCallout: 'none',
+              touchAction: 'manipulation'
+            }}
             required
           />
           {error && (
