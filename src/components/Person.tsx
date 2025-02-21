@@ -14,13 +14,6 @@ interface PersonProps {
   onDeleteExpense: (personId: string, expenseId: string) => void;
 }
 
-const formatNumber = (num: number) => {
-  return new Intl.NumberFormat('en-US', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  }).format(num);
-};
-
 const Person: FC<PersonProps> = ({ 
   person, 
   onEditPerson, 

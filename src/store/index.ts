@@ -117,7 +117,7 @@ const useStore = create<AppState>()(
         const balances = get().calculateBalances();
         if (balances.length === 0) return [];
 
-        const settlements = [];
+        const settlements: Array<{ from: string; to: string; amount: string }> = [];
         
         // Create a copy of balances to mutate
         const workingBalances = [...balances];
