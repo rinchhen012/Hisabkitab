@@ -43,16 +43,13 @@ const AddPersonForm: FC<AddPersonFormProps> = ({ onSubmit }) => {
   return (
     <div className="space-y-2">
       <form onSubmit={handleSubmit} className="flex gap-2">
-        <div className="relative flex-1">
-          <label htmlFor="nameInput" className="sr-only">Enter name</label>
+        <div className="flex-1">
           <input
-            id="nameInput"
             type="text"
-            inputMode="text"
             value={name}
             onChange={(e) => {
               setName(e.target.value);
-              setError('');
+              setError(''); // Clear error when typing
             }}
             placeholder="Enter mf name"
             className={`input w-full text-surface-100 placeholder:text-surface-400 ${
