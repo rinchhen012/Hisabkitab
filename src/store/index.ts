@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { AppState, PersonType, ExpenseType, Theme } from '../types';
+import type { AppState, PersonType, Theme } from '../types';
 
 const LOCAL_STORAGE_KEY = 'hisabkitab-data-v2';
 
